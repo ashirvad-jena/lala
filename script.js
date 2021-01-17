@@ -67,6 +67,24 @@ const currencies = new Map([
   ['GBP', 'Pound sterling'],
 ]);
 
+const displaymovements = movements => {
+  containerMovements.innerHTML = '';
+  movements.forEach((movement, index) => {
+    const type = movement > 0 ? 'deposit' : 'withdrawal';
+    const html = `
+    <div class="movements__row">
+      <div class="movements__type movements__type--${type}">${
+      index + 1
+    } ${type}</div>
+      <div class="movements__value">₹${movement}</div>
+    </div>
+    `;
+    containerMovements.insertAdjacentHTML('afterbegin', html);
+  });
+};
+
+displaymovements(account1.movements);
+
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 for (const [i, movement] of movements.entries()) {
